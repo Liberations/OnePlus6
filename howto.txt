@@ -1,0 +1,18 @@
+1.downoload https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/ and Unzip 
+
+2.sudo gedit /etc/profile 
+#add below to profile...
+export ANDROID_AARCH64=~/android/onepluspie/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
+export ARCH=arm64
+export SUBARCH=arm64
+export PATH=$PATH:$ANDROID_AARCH64
+export CROSS_COMPILE=aarch64-linux-android-
+
+source /etc/profile && . /etc/profile
+
+cd ~/android/onepluspie/kernel/oneplus/ElementalX-3.00
+make O=output elementalx_defconfig
+cd output
+make O=output DTC_EXT=dtc -j16
+
+
